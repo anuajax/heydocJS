@@ -1,0 +1,20 @@
+.login-form{
+    width: 500px;
+    height: 300px;
+    border: 1px solid grey;
+    box-shadow: 2px;
+    padding: 30px 30px;
+    box-shadow: 5px 10px #a3eea9;
+    background-image: url('https://image.freepik.com/free-photo/healthcare-accessories-with-modern-devices-green-background_23-2148213959.jpg');
+    background-size: cover;
+}
+.login_form_div{
+    display:flex;
+    justify-content: center;
+   padding: 30px 30px;
+  
+   
+}
+label{
+    padding-left: 12px;
+}

@@ -1,0 +1,29 @@
+.doctor-signup{
+  margin: 50px 60px;
+  background-color: #00141f;
+}
+.doctor-signup-form{
+padding: 20px 20px;
+}
+input{
+  background-color: lightgray;
+}
+p{
+  font-size: 20px;
+  margin-right: 10px;
+}
+h5{
+  margin-top: 20px;
+  color: white;
+}
+.header{
+  display: flex;
+  background-color: #e6ecf0;
+  padding: 10px 0px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+label{
+  padding-left: 5px;
+  color: white;
+}

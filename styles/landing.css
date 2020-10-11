@@ -1,0 +1,48 @@
+.custombutton{
+   
+        outline: none;
+        border: none;
+        cursor: pointer;
+        display: block;
+        position: relative;
+       background-color: rgb(65, 218, 129);
+        font-size: 18px;
+        font-weight: 500;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 10px 20px;
+        margin: 0 auto;
+        box-shadow: 0 8px #3c9966;
+        border-radius: 20px;
+        text-decoration: none;
+        width: max-content;
+      }
+      .custombutton a {
+        text-decoration: none;
+        color: white;
+        
+      }
+      .custombutton:hover {
+        box-shadow: 0 4px #3c9966;
+        top: 2px;
+        color: #fff;
+        text-decoration: none;
+    }
+.landingdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+ 
+    height: 400px;
+    
+}
+.landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./background_image.png');
+    background-size: cover;
+    height: 100vh;
+}

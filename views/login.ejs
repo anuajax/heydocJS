@@ -6,11 +6,13 @@
    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
     <link rel="stylesheet" href="/login.css">
-    <title>Document</title>
+    <title>Hey Doc!</title>
+    <link rel = "icon" href = "/logo.png" 
+        type = "image/x-icon">
 </head>
-<body >
-    <div class="login_form_div">
-    <form class="login-form">
+<body style="background-color: whitesmoke;">
+    <div class="login_form_div" >
+    <form class="login-form" action="/auth/login" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Username</label>
           <input type="text" class="form-control"/>
@@ -19,7 +21,7 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" >Login</button>
       </form>
     </div>
 

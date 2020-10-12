@@ -1,0 +1,25 @@
+/*.body{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	position: fixed;
+}
+*/
+.mycontainer{
+	background-image: url('./dashbaord_image.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 95%;
+	border-radius: 10px;
+
+	height: 150px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.heading{
+	padding-top: 80px;
+	padding-left: 10px;
+	
+	
+}

@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 100%;
+    width: auto;
+    background-image: url('./dashbaord_image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.mycontainer{
+	margin: 20px;
+	padding: 10px;
+	width: auto;
+	display: flex;
+}
+.jumbotron{
+	background-color: whitesmoke;
+}

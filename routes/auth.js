@@ -1,3 +1,4 @@
+
 const { render, renderFile } = require("ejs");
 
 
@@ -14,7 +15,7 @@ router.get("/signup/patient",(req,res)=>{
     res.render("patsignup.ejs")
 });
 router.post("/login",(req,res)=>{
-	res.render("login.ejs")
+	res.render("docDashboard.ejs")
     /*assign token and redirect to dashboard page*/
 })
 router.get("/doctor/dashboard",(req,res)=>{

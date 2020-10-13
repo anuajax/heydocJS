@@ -19,3 +19,9 @@ body {
 .jumbotron{
 	background-color: whitesmoke;
 }
+
+.footer{
+	background-color: #e3f2fd;
+	margin: 0 !important;
+	padding: 0;
+}

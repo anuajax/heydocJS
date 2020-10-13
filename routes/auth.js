@@ -25,5 +25,5 @@ router.get("/doctor/appointments",(req,res)=>{
 })
 router.get("/doctor/patients",(req,res)=>{
 	res.render("docPatients.ejs")
-})
+});
 module.exports = router;

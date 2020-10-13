@@ -6,6 +6,6 @@ router.get("/doctor/:docusername",(req,res)=> {
 })
 
 router.get("/patient/:patusername",(req,res)=> {
-    res.render("patientProfile.ejs")
+    res.render("patProfile.ejs")
 })
 module.exports = router;

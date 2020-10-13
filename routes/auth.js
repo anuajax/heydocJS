@@ -27,4 +27,20 @@ router.get("/doctor/appointments",(req,res)=>{
 router.get("/doctor/patients",(req,res)=>{
 	res.render("docPatients.ejs")
 });
+router.get("/doctor/files",(req,res)=>{
+	res.render("docFiles.ejs")
+});
+router.get("/patient/dashboard",(req,res)=>{
+	res.render("patDashboard.ejs")
+});
+router.get("/patient/appointments",(req,res)=>{
+	res.render("patAppointments.ejs")
+});
+router.get("/patient/doctors",(req,res)=>{
+	res.render("patDoctors.ejs")
+});
+router.get("/patient/files",(req,res)=>{
+	res.render("patFiles.ejs")
+});
+
 module.exports = router;

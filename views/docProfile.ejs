@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/docProfile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd">
+        <a class="navbar-brand" href="#">
+          <img src="/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+         Hey Doc!
+        </a>
+  
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/doctor/appointments">My Appointments</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/doctor/patients">My Patients</a>
+              </li>
+              
+             
+            </ul>
+            <ul class="nav ">
+            <li class="mr-2 weavy-notifications"><img src="https://img.icons8.com/carbon-copy/45/000000/bell.png"/></li>
+            <li class="mr-2 weavy-messenger"><img src="https://img.icons8.com/fluent/35/000000/facebook-messenger.png"/></li>
+            <li class="nav-item dropdown mr-5">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               @ username
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="#">Change Password</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+            
+            </ul>
+  
+          </div>
+        </nav>
+    <div class="profile">
+        <div class="left-section">
+            <div>
+                <img src="https://www.bizasialive.com/wp/wp-content/uploads/2019/04/sunilgrover001.jpg" class="img-fluid rounded" alt="Responsive image">
+            </div>
+            <div class="work">
+                <h3>Work</h3>
+                <hr style="border:3px solid #f1f1f1">
+                <div>
+                    <h4>AIIMS Delhi <span class="badge badge-secondary">New</span></h4>
+                    <p>Xyz Address</p>
+                    <p>address line 2</p>
+                </div>
+                <hr style="border:1px solid #f1f1f1">
+                <div>
+                    <h4>Personal Clinic <span class="badge badge-secondary">New</span></h4>
+                    <p>Xyz Address</p>
+                    <p>address line 2</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="right-section">
+            <div>
+                <h3>Jeremy Rose </h3>
+                <span> <img src="https://img.icons8.com/nolan/30/user-location.png"/> Los Angeles</span>
+                <div>
+                    <span class="heading">Doctor rating</span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p>4.1 average based on 254 reviews.</p>
+                </div>
+                    <hr style="border:3px solid #f1f1f1">
+            </div>
+
+            <div>
+                <h4>Specialist of :</h4>
+                    <ul>
+                        <li>Lungs</li>
+                        <li>ENT</li>
+                        <li>Heart</li>
+                    </ul>
+                <h4>Qualifications</h4>
+                    <ul>
+                        <li>MD</li>
+                        <li>JLNMCH</li>
+                        <li>HDAPH</li>
+                    </ul>
+                    <hr style="border:3px solid #f1f1f1">
+            </div>
+
+          
+
+            <div>
+                <h4>Address Details: </h4>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Address</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contact</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <p>Address Line 1 from form</p>
+                        <p>Address Line 2 from form</p>
+                        <p>Address Line 3 from form</p>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <p>Phone: 546864646</p>
+                        <p>Email: kndnakbjkj@sondjka.com</p>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+     
+</body>
+</html>

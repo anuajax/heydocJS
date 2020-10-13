@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="/docDashboard.css">
+    <link rel="stylesheet" href="/docAppointment.css">
      <title>Hey Doc!</title>
     <link rel = "icon" href = "/logo.PNG" 
         type = "image/x-icon">
@@ -27,21 +27,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/auth/patient/dashboard">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/auth/doctor/appointments">My Appointments</a>
+              <a class="nav-link" href="/auth/patient/appointments">My Appointments</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/auth/doctor/patients">My Patients</a>
+              <a class="nav-link" href="/auth/patient/patients">My Doctors</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/auth/doctor/files">My Files</a>
+              <a class="nav-link" href="/auth/patient/files">My Files</a>
             </li> 
             
            
           </ul>
-          <ul class="nav "> 
+          <ul class="nav ">
           <!-- notifications -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-bottom:  5px">
@@ -77,45 +77,27 @@
         </div>
       </nav>
       <br/>
-      <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-                  aria-label="Search">
-              </form>
 
       <div class="mycontainer">
-       <div class="jumbotron" style="width: 600px; margin-left: 10px;height: 430px">
-          <h1 class="display-7">My Appointments</h1>
-          <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-          <hr class="my-4">
-          <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-          <a class="btn btn-primary btn-lg" href="/auth/doctor/Appointments" role="button">View All</a>
-        </div>  
-        <div class="jumbotron" style="width: 850px; margin-left: 10px;height: 430px">
-          <h1 class="display-7">Check out whats happening in the doctor's community!</h1>
-          <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-          <hr class="my-4">
-          <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">View More</a>
-        </div> 
+      	<div class="heading">
+      	<h1>My Doctors</h1>
+        <br/>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Active Doctors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Previous Doctors</a>
+          </li>
+          
+        </ul>
+      </div>
+      	
+      </div>
 
-        
+     
 
-      </div> 
-      <div class="jumbotron" style="width: 850px; margin-left: 43px;height: 430px">
-          <h1 class="display-7">COVID 19 UPDATES</h1>
-          <p class="lead">During the present novel coronavirus (COVID-19) pandemic, those on the front lines—including health care professionals, researchers, and government experts—need quick, easy access to real-time critical data.</p>
-          <hr class="my-4">
-          <p>To know the covid data for all countries press View More</p>
-          <br>
-          <a class="btn btn-primary btn-lg" href="https://covid19.who.int/" target="_blank" role="button">View More</a>
-      </div> 
-       
-        <footer class="footer">
-          <p style="margin: 0;padding: 5px">Made by Gorrila Gang<br></p>
-        </footer>
-    
-    <!-- script for weavy components -->
+      <!-- script for weavy components -->
     <script type="text/javascript">
         var jw = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyaXRpa2EiLCJleHAiOjE2MzM2MzM4NjYsImlzcyI6ImNsaWVudElkIn0.WHPE3P1o8w5Mo4gikE-mVJPeRWWykU_DEvPr5Av7FTg";
         var weavy = new Weavy({ jwt: jw });
@@ -128,6 +110,8 @@
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+
+
+
 </body>
-</html>

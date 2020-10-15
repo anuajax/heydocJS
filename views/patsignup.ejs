@@ -12,52 +12,53 @@
 <body>  
     <div class="header">
         <p>I already have an account</p>
-        <a href="/auth/login" class="btn btn-sm btn-primary">Login</a>
+        <a href="/auth/login/patient" class="btn btn-sm btn-primary">Login</a>
     </div>
     <h3 class="text-center">Fill the form below to create a new account</h3>  
     <div class="doctor-signup" style="border-radius: 5px">
         
-    <form class="doctor-signup-form" >
+    <form class="doctor-signup-form" method="POST" action="/auth/signup/patient">
         <div class="form-row">
         <div class="form-group col-md-6">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group col-md-6">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
         </div>
         </div>
 
         <div class="form-row">
             <div class="col">
                 <label for="Name">Full Name</label>
-              <input type="text" class="form-control" placeholder="Your Name">
+              <input type="text" class="form-control" placeholder="Your Name" name="name" required>
             </div>
             <div class="col">
                 <label for="Name">Give a username</label>
-              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" class="form-control" placeholder="Username" name="username" required>
             </div>
           </div>
    
           <h5>Address Details: </h5>
           <div class="form-group">
-            <label for="inputAddress">Address 1</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Street/Area">
+            <label for="inputAddress">Address Line 1</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Street/Area" name="addressLine1"required>
           </div>
           <div class="form-group">
-            <label for="inputAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            <label for="inputAddress2">Address Line 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+            name="addressLine2">
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">City</label>
-              <input type="text" class="form-control" id="inputCity">
+              <input type="text" class="form-control" id="inputCity" name="city" required>
             </div>
             <div class="form-group col-md-4">
               <label for="inputState">State</label>
-              <select id="inputState" class="form-control">
+              <select id="inputState" class="form-control" required>
                 <option selected>Choose...</option>
                 <option>Rajasthan</option>
                 <option>Bihar</option>
@@ -68,7 +69,7 @@
             </div>
             <div class="form-group col-md-2">
               <label for="inputZip">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
+              <input type="text" class="form-control" id="inputZip" name="zipcode" required>
             </div>
             <div class="form-row">
                 
@@ -77,15 +78,15 @@
           
       
       
-        <h5>Contact Info: </h5>
+         <h5>Contact Info: </h5>
         
         <div class="form-row">
         <div class="form-group col-md-6">
             
-            <input type="text" class="form-control" id="Phone Number" placeholder="Personal Phone">
+            <input type="text" class="form-control" id="Phone Number" placeholder="Personal Phone" name="personalPhone" required>
           </div>
           <div class="form-group col-md-6">
-            <input type="text" class="form-control" id="Phone Number" placeholder="Other Phone(Optional)">
+            <input type="text" class="form-control" id="Phone Number" placeholder="Clinic Phone" name="clinicPhone"required>
         </div>
         </div>
 

@@ -18,6 +18,7 @@ router.post("/login",(req,res)=>{
 	res.render("docDashboard.ejs")
     /*assign token and redirect to dashboard page*/
 })
+
 router.get("/doctor/dashboard",(req,res)=>{
 	res.render("docDashboard.ejs")
 })

@@ -78,11 +78,15 @@
           <h5>Qualifications:</h5>
           <div class="form-group">
             <label for="inputAddress">Specialization</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Please enter comma sepearted values of Specialization" name="Specialist"required>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Specialization" name="Specialist" required aria-describedby="specializationHelp">
+          <small id="specializationHelp" class="form-text text-muted ">Please enter comma seperated values in case of multiple inputs.</small>
+
+
           </div>
           <div class="form-group ">
             <label for="inputAddress">Degrees</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Please enter comma sepearted values of Degrees" name="degrees" required>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Degrees" name="degrees" requiredaria-describedby="degreeHelp">
+            <small id="degreeHelp" class="form-text text-muted ">Please enter comma seperated values in case of multiple inputs.</small>
           </div>
 
       

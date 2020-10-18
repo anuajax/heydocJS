@@ -15,6 +15,13 @@
   
    
 }
+.header{
+  display: flex;
+  background-color: #e6ecf0;
+  padding: 10px 0px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 label{
     padding-left: 12px;
 }

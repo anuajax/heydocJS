@@ -1,25 +1,22 @@
-
 const { render, renderFile } = require("ejs");
 const fetch = require("node-fetch");
-
 const express= require('express');
 const router = express.Router();
 const app = express();
 const bodyParser=require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
+//const verifytoken = require('./verifyToken');//not required done by weavy
+ 
 
-router.get("/login/doctor",(req,res)=> {
-    res.render("docLogin.ejs")
-});
-router.get("/login/patient",(req,res)=> {
-    res.render("patLogin.ejs")
-});
-router.get("/signup/doctor",(req,res)=> {
+//SIGNUP ROUTES
+router.get("/signup/doctor", (req,res)=> {
     res.render("docSignup.ejs")
 });
-router.get("/signup/patient",(req,res)=>{
+router.get("/signup/patient", (req,res)=>{
     res.render("patSignup.ejs")
 });
+
+
 router.post("/signup/doctor" ,(req,res)=>{
 	//creating new patient in the database via API call to AWS
 	var signupData = req.body;
@@ -38,27 +35,14 @@ router.post("/signup/doctor" ,(req,res)=>{
   	console.log(content);//success:true if user successfully created else false
   	if(content !== undefined)
   	{
-  		
-	  	if(content.success === true)
-	  	{
-	  		res.redirect("/login/doctor");
-	  	}
-	  	else
-	  	{
-	  		// window.alert("username is already taken please try another username!");
-	  		res.render("docSignup.ejs");
-	  	}
+  		if(content.success === true)
+	  		res.redirect("/auth/login/doctor");
+	  	else res.render("docSignup.ejs"); // window.alert("username is already taken please try another username!");
   	}
-  	else
-  	{
-  		// window.alert("Please try again , there is some error !");
-  		res.render("docSignup.ejs");
-  	}
-
-  	})();
-
-  	
+  	else res.render("docSignup.ejs"); // window.alert("Please try again , there is some error !");
+  	})();	
 });
+
 router.post("/signup/patient" ,(req,res)=>{
 	//creating new patient in the database via API call to AWS
 	var signupData = req.body;
@@ -78,25 +62,26 @@ router.post("/signup/patient" ,(req,res)=>{
   	if(content !== undefined)
   	{
   		if(content.success === true)
-	  	{
-	  		res.redirect("/login/patient");
-	  	}
-	  	else
-	  	{
-	  		// window.alert("username is already taken please try another username!");
-	  		res.render("patSignup.ejs");
-	  	}
+	  		res.redirect("/auth/login/patient");
+	  	else res.render("patSignup.ejs"); // window.alert("username is already taken please try another username!");
   	}
-  	else
-  	{
-  		// window.alert("Please try again , there is some error !");
-  		res.render("patSignup.ejs");
-  	}
-
+  	else res.render("patSignup.ejs"); // window.alert("Please try again , there is some error !");
   	})();
-  	
-  	
 });
+
+
+// LOGIN ROUTES
+var doctor;
+var patient;
+
+router.get("/login/doctor", (req,res)=> {
+    res.render("docLogin.ejs")
+});
+router.get("/login/patient", (req,res)=> {
+    res.render("patLogin.ejs")
+});
+
+
 router.post("/login/doctor",(req,res)=>{
 	var loginData = req.body;
 	loginData["flag"] = "doc";
@@ -114,29 +99,25 @@ router.post("/login/doctor",(req,res)=>{
   	});
   	content = await response.json();
   	console.log(content); //success:true if valid else false
-
 	  	if(content.success === true)
 	  	{
-	  		const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=pat&username="+req.body.username;
-	  		(async ()=>{
-			const response = await fetch(url, {
-			headers: {
-		      'Accept': 'application/json',
-		      'Content-Type': 'application/json'
-		    },
-		    method: 'get',
-		    });
-		  	content = await response.json();
-		  	console.log(content);
-		  	})();
-		}
-
+	  		const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=doc&username="+req.body.username;
+	  		
+		fetch(url, { headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, method: 'GET',})
+		.then(resp => resp.json())
+		.then(user => {
+			  doctor=user;
+			  console.log(user);
+			  res.render('docDashboard.ejs',{user:user});
+			})
+		.catch(err=>console.log(err));
+		}	
 	})();
-
-
-	res.render("docDashboard.ejs")
     /*assign token and redirect to dashboard page*/
 });
+
+
+
 router.post("/login/patient",(req,res)=>{
 	var loginData = req.body;
 	loginData["flag"] = "pat";
@@ -156,28 +137,27 @@ router.post("/login/patient",(req,res)=>{
   	console.log(content); //success:true if valid else false
 		if(content.success === true)
 	  	{
-	  		const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=pat&username="+req.body.username;
-	  		(async ()=>{
-			const response = await fetch(url, {
-			headers: {
-		      'Accept': 'application/json',
-		      'Content-Type': 'application/json'
-		    },
-		    method: 'get',
-		    });
-		  	content = await response.json();
-		  	console.log(content);
-		  	})();
+const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=pat&username="+req.body.username;
+		fetch(url, {headers: {'Accept': 'application/json','Content-Type': 'application/json'},method: 'GET',})
+		.then(resp => resp.json())
+		.then(user => {
+			patient = user;
+			console.log(user);
+			res.render('./patDashboard.ejs',{user:user});
+		}).catch(err => console.log(err));
+			  //res.header('authtoken',token);
 		}
-		
 	})();
-  
-	res.render("patDashboard.ejs")
     /*assign token and redirect to dashboard page*/
 });
 
+
+//---------------------------Other Pages Routes-------------------------------------------------
+
 router.get("/doctor/dashboard",(req,res)=>{
-	res.render("docDashboard.ejs")
+	 //res.render("docDashboard.ejs",{user: req.user});
+	// res.json({dashb: 'true'});
+	 res.json(req.user);
 })
 router.get("/doctor/appointments",(req,res)=>{
 	res.render("docAppointments.ejs")
@@ -200,5 +180,14 @@ router.get("/patient/doctors",(req,res)=>{
 router.get("/patient/files",(req,res)=>{
 	res.render("patFiles.ejs")
 });
+
+
+//-----------------Profile Pages----------------------
+router.get('/doctor/profile',(req,res)=> {
+	res.render("docProfile.ejs",{user:doctor});
+})
+router.get('/patient/profile',(req,res)=> {
+	res.render("patProfile.ejs",{user:patient});
+})
 
 module.exports = router;

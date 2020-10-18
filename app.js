@@ -12,7 +12,7 @@ const indexRoutes = require('./routes/index');
 const  expressSanitizer = require('express-sanitizer');
  app.use(express.json());
  app.use(express.urlencoded({extended: true}));
-// app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(expressSanitizer());
 app.use("/auth",authRoutes);
 app.use("/user",otherRoutes);

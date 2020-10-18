@@ -61,10 +61,10 @@
           <!-- profile options -->
           <li class="nav-item dropdown mr-5">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             @ username
+             <%= user.username %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="/auth/doctor/profile">Profile</a>
               <a class="dropdown-item" href="#">Edit Profile</a>
               <a class="dropdown-item" href="#">Change Password</a>
               <div class="dropdown-divider"></div>
@@ -102,12 +102,12 @@
       
       <!-- script for weavy components -->
     <script type="text/javascript">
-        var jw = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyaXRpa2EiLCJleHAiOjE2MzM2MzM4NjYsImlzcyI6ImNsaWVudElkIn0.WHPE3P1o8w5Mo4gikE-mVJPeRWWykU_DEvPr5Av7FTg";
-        var weavy = new Weavy({ jwt: jw });
-        var space = weavy.space({ key: "new" });
+        var userdata  = <%- JSON.stringify(user)%> ;
+        var weavy = new Weavy({ jwt: userdata.jwt });
+        var space = weavy.space({ key: userdata.username });
         space.app({key: "posts-demo",type: "posts",container: "#weavy-container"});
         space.app({ key: "main-messenger", type: "messenger", container: "#messenger"});
-        space.app({ key: "main-notifications", type: "notifications", container: "#notifications"});
+        space.app({ key: "main-notifications", type: "notifications", container: "#notifications"});  
     </script>
 
     <!-- bootstrap -->

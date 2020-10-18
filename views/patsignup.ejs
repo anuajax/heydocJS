@@ -21,7 +21,7 @@
         <div class="form-row">
         <div class="form-group col-md-6">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group col-md-6">
@@ -83,11 +83,8 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             
-            <input type="text" class="form-control" id="Phone Number" placeholder="Personal Phone" name="personalPhone" required>
+            <input type="text" class="form-control" id="Phone Number" placeholder="Personal Phone" name="personalPhone" pattern="[1-9]{1}[0-9]{9}" title="Enter 10 digit mobile number" required>
           </div>
-          <div class="form-group col-md-6">
-            <input type="text" class="form-control" id="Phone Number" placeholder="Clinic Phone" name="clinicPhone"required>
-        </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

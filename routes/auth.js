@@ -155,30 +155,30 @@ const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?
 //---------------------------Other Pages Routes-------------------------------------------------
 
 router.get("/doctor/dashboard",(req,res)=>{
-	 //res.render("docDashboard.ejs",{user: req.user});
+	 res.render("docDashboard.ejs",{user: doctor});
 	// res.json({dashb: 'true'});
 	 res.json(req.user);
 })
 router.get("/doctor/appointments",(req,res)=>{
-	res.render("docAppointments.ejs")
+	res.render("docAppointments.ejs", {user: doctor})
 })
 router.get("/doctor/patients",(req,res)=>{
-	res.render("docPatients.ejs")
+	res.render("docPatients.ejs", {user: doctor})
 });
 router.get("/doctor/files",(req,res)=>{
-	res.render("docFiles.ejs")
+	res.render("docFiles.ejs", {user: doctor})
 });
 router.get("/patient/dashboard",(req,res)=>{
-	res.render("patDashboard.ejs")
+	res.render("patDashboard.ejs", {user: patient})
 });
 router.get("/patient/appointments",(req,res)=>{
-	res.render("patAppointments.ejs")
+	res.render("patAppointments.ejs", {user: doctor})
 });
 router.get("/patient/doctors",(req,res)=>{
-	res.render("patDoctors.ejs")
+	res.render("patDoctors.ejs", {user: doctor})
 });
 router.get("/patient/files",(req,res)=>{
-	res.render("patFiles.ejs")
+	res.render("patFiles.ejs", {user: doctor})
 });
 
 

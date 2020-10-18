@@ -1,0 +1,54 @@
+.mycontainer{
+	background-image: url('./dashbaord_image.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 95%;
+	border-radius: 10px;
+
+	height: 150px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.heading{
+	padding-top: 80px;
+	padding-left: 10px;
+}
+.result{
+	width: 80%;
+	margin-left: 20px;
+	margin-right: 20px;
+	height: 200px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+
+}
+.searchbody{
+	padding-left: 10px;
+	width: 80%;
+	margin-left: 20px;
+	margin-right: 20px;
+	height: 170px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.resultContainer{
+	display: flex;
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin: 10px;
+}
+.utilButton{
+	padding: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	width: 20%;
+	height: 200px;
+}

@@ -61,7 +61,7 @@
           <!-- profile options -->
           <li class="nav-item dropdown mr-5">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             @ <%=user.username%>
+             <%= user.username %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/auth/doctor/profile">Profile</a>
@@ -101,14 +101,13 @@
 
       
       <!-- script for weavy components -->
-      <script type="text/javascript">
+    <script type="text/javascript">
         var userdata  = <%- JSON.stringify(user)%> ;
-        var token = userdata.jwt;
-        var weavy = new Weavy({ jwt: token });
+        var weavy = new Weavy({ jwt: userdata.jwt });
         var space = weavy.space({ key: userdata.username });
         space.app({key: "posts-demo",type: "posts",container: "#weavy-container"});
         space.app({ key: "main-messenger", type: "messenger", container: "#messenger"});
-        space.app({ key: "main-notifications", type: "notifications", container: "#notifications"});
+        space.app({ key: "main-notifications", type: "notifications", container: "#notifications"});  
     </script>
 
     <!-- bootstrap -->

@@ -62,11 +62,12 @@ router.post("/signup/patient" ,(req,res)=>{
   	if(content !== undefined)
   	{
   		if(content.success === true)
-	  		res.redirect("/auth/login/patient");
+			res.redirect("/auth/login/patient");
 	  	else res.render("patSignup.ejs"); // window.alert("username is already taken please try another username!");
   	}
   	else res.render("patSignup.ejs"); // window.alert("Please try again , there is some error !");
   	})();
+
 });
 
 
@@ -107,13 +108,13 @@ router.post("/login/doctor",(req,res)=>{
 		.then(resp => resp.json())
 		.then(user => {
 			  doctor=user;
-			  console.log(user);
+			  // console.log(user);
 			  res.render('docDashboard.ejs',{user:user});
 			})
 		.catch(err=>console.log(err));
 		}	
 	})();
-    /*assign token and redirect to dashboard page*/
+  
 });
 
 
@@ -125,60 +126,87 @@ router.post("/login/patient",(req,res)=>{
 	//method to check if the username and password provided are valid
 	//API call to AWS, for checking in the database for matching username and password
 	(async ()=>{
-	const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/login', {
-	headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: 'post',
-    body: JSON.stringify(loginData)
-  	});
-  	content = await response.json();
-  	console.log(content); //success:true if valid else false
+		const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/login', {
+		headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: 'post',
+	    body: JSON.stringify(loginData)
+	  	});
+	  	content = await response.json();
+	  	console.log(content); //success:true if valid else false
 		if(content.success === true)
 	  	{
-const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=pat&username="+req.body.username;
+
+		const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=pat&username="+req.body.username;
 		fetch(url, {headers: {'Accept': 'application/json','Content-Type': 'application/json'},method: 'GET',})
 		.then(resp => resp.json())
 		.then(user => {
 			patient = user;
-			console.log(user);
+			// console.log(user);
 			res.render('./patDashboard.ejs',{user:user});
 		}).catch(err => console.log(err));
 			  //res.header('authtoken',token);
 		}
 	})();
-    /*assign token and redirect to dashboard page*/
+    
+	  		
 });
 
 
 //---------------------------Other Pages Routes-------------------------------------------------
 
+router.post("/patient/search",(req,res)=>{
+	var query = req.body;
+	console.log(query);
+	(async ()=>{
+		const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/search', {
+		headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: 'post',
+	    body: JSON.stringify(query)
+	  	});
+	  	result = await response.json();
+	  	console.log(result.values); // array of  info of all the doctors that match the search query
+	  	var resArray = [];
+	  	resArray = result.values;
+	  	res.render("patSearch",{result:resArray , user:patient});
+	  	
+  	})();
+  	
+});
+
 router.get("/doctor/dashboard",(req,res)=>{
 	 res.render("docDashboard.ejs",{user: doctor});
 	// res.json({dashb: 'true'});
 	 res.json(req.user);
-})
+});
+
+
+
 router.get("/doctor/appointments",(req,res)=>{
-	res.render("docAppointments.ejs", {user: doctor})
-})
+	res.render("docAppointments.ejs",{user:doctor})
+});
 router.get("/doctor/patients",(req,res)=>{
-	res.render("docPatients.ejs", {user: doctor})
+	res.render("docPatients.ejs",{user:doctor})
 });
 router.get("/doctor/files",(req,res)=>{
-	res.render("docFiles.ejs", {user: doctor})
+	res.render("docFiles.ejs",{user:doctor})
 });
 router.get("/patient/dashboard",(req,res)=>{
-	res.render("patDashboard.ejs", {user: patient})
+	res.render("patDashboard.ejs",{user:patient})
 });
 router.get("/patient/appointments",(req,res)=>{
-	res.render("patAppointments.ejs", {user: doctor})
+	res.render("patAppointments.ejs",{user:patient})
 });
 router.get("/patient/doctors",(req,res)=>{
-	res.render("patDoctors.ejs", {user: doctor})
+	res.render("patDoctors.ejs",{user:patient})
 });
 router.get("/patient/files",(req,res)=>{
-	res.render("patFiles.ejs", {user: doctor})
+	res.render("patFiles.ejs",{user:patient})
 });
 
 

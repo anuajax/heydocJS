@@ -27,16 +27,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/auth/doctor/dashboard">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/auth/doctor/<%=user.username%>/dashboard">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/auth/doctor/appointments">My Appointments</a>
+              <a class="nav-link" href="/auth/doctor/<%=user.username%>/appointments">My Appointments</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/auth/doctor/patients">My Patients</a>
+              <a class="nav-link" href="/auth/doctor/<%=user.username%>/patients">My Patients</a>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="/auth/doctor/files">My Files</a>
+              <a class="nav-link" href="/auth/doctor/<%=user.username%>/files">My Files</a>
             </li> 
             
            
@@ -64,11 +64,11 @@
              <%= user.username %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/auth/doctor/profile">Profile</a>
+              <a class="dropdown-item" href="/auth/doctor/<%=user.username%>/profile">Profile</a>
               <a class="dropdown-item" href="#">Edit Profile</a>
               <a class="dropdown-item" href="#">Change Password</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="/auth/doctor/<%=user.username%>/logout">Logout</a>
             </div>
           </li>
           

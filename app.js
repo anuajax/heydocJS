@@ -7,7 +7,7 @@ app.set("view engine","ejs");
 app.listen(3000, ()=>console.log(`Server active on port No: ${port}`));
 app.use(express.static(__dirname + "/styles"));
 const authRoutes = require("./routes/auth");
-const otherRoutes = require("./routes/commonRoutes");
+// const otherRoutes = require("./routes/commonRoutes");
 const indexRoutes = require('./routes/index');
 const  expressSanitizer = require('express-sanitizer');
  app.use(express.json());
@@ -15,7 +15,7 @@ const  expressSanitizer = require('express-sanitizer');
 
 app.use(expressSanitizer());
 app.use("/auth",authRoutes);
-app.use("/user",otherRoutes);
+// app.use("/user",otherRoutes);
 app.use("/",indexRoutes);
 app.get('/',(req,res)=>{
     res.render("landing.ejs");

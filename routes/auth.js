@@ -5,7 +5,7 @@ const router = express.Router();
 const app = express();
 const bodyParser=require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(router)
  
 
 //SIGNUP ROUTES
@@ -72,7 +72,7 @@ router.post("/signup/patient" ,(req,res)=>{
 
 
 // LOGIN ROUTES
-var doctor;
+var doctors;
 var patient;
 
 router.get("/login/doctor", (req,res)=> {
@@ -102,21 +102,23 @@ router.post("/login/doctor",(req,res)=>{
   	console.log(content); //success:true if valid else false
 	  	if(content.success === true)
 	  	{
-	  		const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=doc&username="+req.body.username;
+	  	const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=doc&username="+req.body.username;
 	  		
 		fetch(url, { headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, method: 'GET',})
 		.then(resp => resp.json())
 		.then(user => {
 			  doctor=user;
 			  isUserLoggedIn = true;
-			  // console.log(user);
-			  res.render('docDashboard.ejs',{user:user});
+			   console.log(user);
+			   //alert(user);
+			 //res.render("docDashboard.ejs",{user:user}); 
+			   res.redirect(`/auth/doctor/${user.username}/dashboard`);
 			})
 		.catch(err=>console.log(err));
 		}	
 	})();
   
-});
+})
 
 
 
@@ -146,8 +148,9 @@ router.post("/login/patient",(req,res)=>{
 		.then(user => {
 			patient = user;
 			isUserLoggedIn = true;
-			// console.log(user);
-			res.render('./patDashboard.ejs',{user:user});
+			 console.log(user);
+			// alert(user);
+			 return res.redirect(`/auth/patient/${user.username}/dashboard`);
 		}).catch(err => console.log(err));
 			  //res.header('authtoken',token);
 		}
@@ -162,12 +165,14 @@ function isLoggedIn(req,res,next){
 	if(isUserLoggedIn)
 		next();
 	else
-		res.render("landing.ejs");
+		//res.render("landing.ejs");
+		console.log("You are not authenticated");
+		res.redirect("/");
 }
 
 //---------------------------Other Pages Routes-------------------------------------------------
 
-router.post("/patient/search",(req,res)=>{
+router.post("/patient/:username/search",(req,res)=>{
 	var query = req.body;
 	console.log(query);
 	(async ()=>{
@@ -189,47 +194,49 @@ router.post("/patient/search",(req,res)=>{
   	
 });
 
-router.get("/doctor/dashboard",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/dashboard",isLoggedIn,(req,res)=>{
 	res.render("docDashboard.ejs",{user: doctor});
 });
-router.get("/doctor/appointments",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/appointments",isLoggedIn,(req,res)=>{
 	res.render("docAppointments.ejs",{user:doctor})
 });
-router.get("/doctor/patients",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/patients",isLoggedIn,(req,res)=>{
 	res.render("docPatients.ejs",{user:doctor})
 });
-router.get("/doctor/files",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/files",isLoggedIn,(req,res)=>{
 	res.render("docFiles.ejs",{user:doctor})
 });
-router.get("/patient/dashboard",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/dashboard",isLoggedIn,(req,res)=>{
 	res.render("patDashboard.ejs",{user:patient})
 });
-router.get("/patient/appointments",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/appointments",isLoggedIn,(req,res)=>{
 	res.render("patAppointments.ejs",{user:patient})
 });
-router.get("/patient/doctors",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/doctors",isLoggedIn,(req,res)=>{
 	res.render("patDoctors.ejs",{user:patient})
 });
-router.get("/patient/files",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/files",isLoggedIn,(req,res)=>{
 	res.render("patFiles.ejs",{user:patient})
 });
 
 
 //-----------------Profile Pages----------------------
-router.get('/doctor/profile',isLoggedIn,(req,res)=> {
+router.get('/doctor/:username/profile',isLoggedIn,(req,res)=> {
 	res.render("docProfile.ejs",{user:doctor});
 });
-router.get('/patient/profile',isLoggedIn,(req,res)=> {
+router.get('/patient/:username/profile',isLoggedIn,(req,res)=> {
 	res.render("patProfile.ejs",{user:patient});
 });
 
 // ---------------SignOut Pages --------------------
-router.get('/doctor/logout',isLoggedIn,(req,res)=>{
+router.get('/doctor/:username/logout',isLoggedIn,(req,res)=>{
 	isUserLoggedIn = false;
-	res.render("landing.ejs");
+	//res.render("landing.ejs");
+	res.redirect("/");
 });
-router.get('/patient/logout',isLoggedIn,(req,res)=>{
+router.get('/patient/:username/logout',isLoggedIn,(req,res)=>{
 	isUserLoggedIn = false;
-	res.render("landing.ejs");
+	//res.render("landing.ejs");
+	res.redirect("/");
 });
 module.exports = router;

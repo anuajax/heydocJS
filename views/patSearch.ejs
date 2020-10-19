@@ -141,9 +141,8 @@
             <button type="button" class="btn btn-success  btn-lg" style="width: 210px; font-size: 17px">Book an Appointment</button>
             <br>
             <br>
-            <% const url = "/user/doctor/"+ result.username %>
             
-            <a class="btn btn-info btn-lg" href= <%= url %>  style="width: 210px; font-size: 17px">View Full Profile</a>
+            <a class="btn btn-info btn-lg" href= "/auth/patient/<%=user.username%>/doctor/<%=result.username%>/profile"  style="width: 210px; font-size: 17px">View Full Profile</a>
           </div>
         </div>
 

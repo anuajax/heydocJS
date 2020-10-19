@@ -239,4 +239,18 @@ router.get('/patient/:username/logout',isLoggedIn,(req,res)=>{
 	//res.render("landing.ejs");
 	res.redirect("/");
 });
+
+
+//--------------Profile Page view by patients on search------------------
+router.get('/patient/:patusername/doctor/:docusername/profile',(req,res)=> {
+	console.log(req.params);
+	const url = "https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/sign?flag=doc&username="+req.params.docusername;
+	fetch(url, {headers: {'Accept': 'application/json','Content-Type': 'application/json'},method: 'GET',})
+	.then(resp => resp.json())
+	.then(selectedDoctor => {
+		 console.log(selectedDoctor);
+		 res.render("showDocProfile.ejs",{user:patient,doctor:selectedDoctor});
+	}).catch(err => console.log(err));
+});
+
 module.exports = router;

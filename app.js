@@ -15,7 +15,7 @@ const  expressSanitizer = require('express-sanitizer');
 
 app.use(expressSanitizer());
 app.use("/auth",authRoutes);
-// app.use("/user",otherRoutes);
+//app.use("/user",otherRoutes);
 app.use("/",indexRoutes);
 app.get('/',(req,res)=>{
     res.render("landing.ejs");

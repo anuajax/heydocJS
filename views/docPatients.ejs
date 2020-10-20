@@ -61,7 +61,7 @@
           <!-- profile options -->
           <li class="nav-item dropdown mr-5">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             @ <%=user.username%>
+              <%=user.username%>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/auth/doctor/<%=user.username%>/profile">Profile</a>
@@ -82,18 +82,66 @@
       	<div class="heading">
       	<h1>My Patients</h1>
         <br/>
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Active Patients</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Previous Patients</a>
-          </li>
-          
-        </ul>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#active" role="tab" aria-controls="active" aria-selected="true">Active Patients</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#previous" role="tab" aria-controls="previous" aria-selected="false">Previous Patients</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active">
+                <% if(user.approved.length === 0) { %>
+                  <div>Nothing to display here!</div>
+                 <% } else{ %> 
+                <% user.approved.forEach(function(req){ %>
+                <div class="appointment">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Patient Name: <%= req.pat %> </li>
+                    <li class="list-group-item">Date: 22/10/20 %> </li>
+                    <li class="list-group-item">Time: 3 P.M </li>
+                    <a class="btn btn-info" onclick="docPatSpace()" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add prescription</a>
+                    <div class="collapse multi-collapse" id="multiCollapseExample1" style="padding: 10px;padding-right: 40px">
+                      
+
+                    <div class="card card-body" id="files" style="height: 300px;padding: 10px;width: 1200px">
+<!--                       weavy component for common doctor and patient space goes here
+ -->                    </div>
+                 
+                    
+                  </div>
+                  </ul>
+                </div>
+                <% });} %>
+            </div>
+            <div class="tab-pane fade" id="previous" role="tabpanel" aria-labelledby="previous">
+                 <% if(user.previous.length === 0) { %>
+                  <div>Nothing to display here!</div>
+                 <% } else{ %> 
+                <% user.previous.forEach(function(req){ %>
+                <div class="appointment">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Patient Name: <%= req.pat %> </li>
+                    <li class="list-group-item">Date: 22/10/20 %> </li>
+                    <li class="list-group-item">Time: 3 P.M </li>
+                    <a class="btn btn-info" onclick="docPatSpace()" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">View prescription</a>
+                    <div class="collapse multi-collapse" id="multiCollapseExample1" style="padding: 10px;padding-right: 40px">
+                      
+
+                    <div class="card card-body" id="files" style="height: 300px;padding: 10px;width: 1000px">
+<!--                       weavy component for common doctor and patient space goes here
+ -->                    </div>
+                 
+                    
+                  </div>
+                  </ul>
+                </div>
+                <% });} %>
+            </div>
+        </div>
       </div>
-      	
-      </div>
+    </div>
 
      
 
@@ -104,7 +152,11 @@
         var space = weavy.space({ key: userdata.username });
         space.app({key: "posts-demo",type: "posts",container: "#weavy-container"});
         space.app({ key: "main-messenger", type: "messenger", container: "#messenger"});
-        space.app({ key: "main-notifications", type: "notifications", container: "#notifications"});  
+        space.app({ key: "main-notifications", type: "notifications", container: "#notifications"});
+        function docPatSpace(doc,pat){
+          var space1= weavy.space({ key: doc+'-'+pat });
+          space1.app({key: "main-files",type: "files",container: "#files"});
+        }  
     </script>
 
     <!-- bootstrap -->

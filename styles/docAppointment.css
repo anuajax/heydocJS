@@ -17,3 +17,25 @@
 	
 	
 }
+
+.tab-content{
+    margin-bottom: 10px;
+}
+.tab-pane{
+    padding-top: 15px;
+}
+
+.tab-content{
+    margin-bottom: 10px;
+}
+.tab-pane{
+    padding-top: 15px;
+}
+
+.appointment{
+	background-color: whitesmoke;
+	width: 98%;
+	margin: 10px;
+	border-radius: 5px;
+	border: 2px solid black;
+}

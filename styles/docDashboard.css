@@ -16,6 +16,7 @@ body {
 	display: flex;
 	padding: 10px;
 	display: block;
+	border-radius: 5px;
 }
 .mycontainer{
 	margin: 20px;
@@ -32,3 +33,4 @@ body {
 	margin: 0 !important;
 	padding: 0;
 }
+

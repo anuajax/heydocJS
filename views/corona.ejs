@@ -3,50 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
+    <link rel="stylesheet" href="/covid.css">
     <title>Document</title>
 </head>
 <body style="margin: 0;">
     
-    <div id='map' style='width: 100vw; height: 400px;'></div>
-   <div>
-    <% countriesList.forEach(function(country){ %>
-       <p><%=country.name%></p>  
-       <% }); %>
-
-    <% details.forEach(function(detail){ %>
-       <p>Confirmed cases :<%=detail.confirmed.value%></p>
-       <p>Deaths: <%=detail.deaths.value%></p>
-       <p>Recovered: <%=detail.recovered.value%></p>
-       <p>LastUpdate: <%=detail.lastUpdate%></p>   
-    <% }); %>
+    <div id='map' style='width: 100vw; height: 100vh;'></div>
     
-   </div>
+    
 
 
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script> 
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script> 
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
 <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
     <script>
+        function getColor(activecases)
+        {
+            if(activecases>=100000) return "red";
+            if(activecases>=10000 && activecases<100000) return "#FFFF66";
+            if(activecases>=1000 && activecases<10000) return "";
+            return "lightgreen";
+        };
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94ZXIxMzMyMyIsImEiOiJja2docXQzMDEwZ2JwMnFsaTZnanFoaGxtIn0.IuR3tL1kw4eeLi12J2J4Lw';
         var map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/dark-v10',
-          zoom: 1.5
+          zoom: 4.5,
+          center: [76.108221,19.449759]
         });
-        var marker = new mapboxgl.Marker()
-.setLngLat([0, 0])
-.addTo(map);
-map.addControl(
-new MapboxGeocoder({
-accessToken: mapboxgl.accessToken,
-mapboxgl: mapboxgl
-})
-);
-      </script>
+        
+        <% casesList.forEach(function(place){ %>
+           var loc = <%- JSON.stringify(place) %>;
+            new mapboxgl.Marker({color: getColor(<%=place.active%>)})
+            .setLngLat([<%=place.long%>, <%=place.lat%>])
+            .setPopup( new mapboxgl.Popup({ offset: 50 }).setText(loc.combinedKey.toUpperCase()+', CONFIRMED CASES: '+loc.confirmed+', ACTIVE CASES: '+loc.active+', RECOVERED: '+loc.recovered+', DEATHS: '+loc.deaths+', INCIDENT RATE: '+loc.incidentRate+', lastUpdated: '+loc.lastUpdate.toLocaleString()))
+            .addTo(map);
+            
+            <% }); %>
+        map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+            }));
+    </script>
+  
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></scr>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

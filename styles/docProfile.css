@@ -29,10 +29,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-image: url('https://cdn.hipwallpaper.com/i/32/21/RAh3ga.jpg');
     background-size: cover;
-    color: white;
+    color: black;
     padding-left: 20px;
+    border-radius: 7px;
+    border: 5px solid cadetblue;
+
 
 }
 .checked{

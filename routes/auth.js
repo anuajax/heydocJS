@@ -218,6 +218,108 @@ router.get("/patient/:username/doctors",isLoggedIn,(req,res)=>{
 router.get("/patient/:username/files",isLoggedIn,(req,res)=>{
 	res.render("patFiles.ejs",{user:patient})
 });
+// ------------------appointment routes------------
+router.get("/book/appointment/:patUsername/:docUsername",isLoggedIn,(req,res)=> {
+	console.log(req.params.patUsername);
+	console.log(req.params.docUsername);
+
+	var appointmentData ={};
+	appointmentData["doc"] = req.params.docUsername;
+	appointmentData["pat"] = req.params.patUsername;
+	console.log(appointmentData);
+
+	(async ()=>{
+		const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/app', {
+		headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: 'post',
+	    body: JSON.stringify(appointmentData)
+	  	});
+	  	content = await response.json();
+	  	console.log(content); //success:true if valid else false
+	  	patient = content.pat;
+
+		if(content.result === 'success')
+	  	{
+	  		res.render("patAppointments.ejs" , {user: patient});
+		}
+		else
+		{
+			console.log(content.result);
+			res.send(content.result);
+			//error in booking appointment
+		}
+	})();
+});
+
+
+router.get("/approve/appointment/:docUsername/:patUsername",isLoggedIn,(req,res)=> {
+	
+
+	(async ()=>{
+		const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/app?doc='+req.params.docUsername+'&pat='+req.params.patUsername, {
+		headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: 'get',
+	    
+	  	});
+	  	content = await response.json();
+	  	console.log(content); //success:true if valid else false
+	  	doctor = content.doc;
+
+		if(content.result === 'success')
+	  	{
+	  		res.render("docAppointments.ejs" , {user: doctor});
+		}
+		else
+		{
+			console.log(content.result);
+			res.send(content.result);
+			//error in booking appointment
+		}
+	})();
+});
+
+
+router.get("/complete/appointment/:docUsername/:patUsername",isLoggedIn,(req,res)=> {
+	console.log(req.params.patUsername);
+	console.log(req.params.docUsername);
+
+	var appointmentData ={};
+	appointmentData["doc"] = req.params.docUsername;
+	appointmentData["pat"] = req.params.patUsername;
+	console.log(appointmentData);
+
+	(async ()=>{
+		const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/app', {
+		headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: 'delete',
+	    body: JSON.stringify(appointmentData)
+	  	});
+	  	content = await response.json();
+	  	console.log(content); //success:true if valid else false
+	  	patient = content.pat;
+
+		if(content.result === 'success')
+	  	{
+	  		res.render("patAppointments.ejs" , {user: patient});
+		}
+		else
+		{
+			console.log(content.result);
+			res.send(content.result);
+			//error in booking appointment
+		}
+	})();
+});
+
 
 
 //-----------------Profile Pages----------------------

@@ -79,7 +79,7 @@
     <div class="profile">
         <div class="left-section">
             <div>
-                <img src="https://www.bizasialive.com/wp/wp-content/uploads/2019/04/sunilgrover001.jpg" class="img-fluid rounded" alt="Responsive image">
+                <img src="https://previews.123rf.com/images/yupiramos/yupiramos1607/yupiramos160705616/59613224-doctor-avatar-profile-isolated-icon-vector-illustration-graphic-.jpg" class="img-fluid rounded" alt="Responsive image">
             </div>
             <div class="work">
                 <h3>Work</h3>
@@ -87,15 +87,15 @@
                 <div>
                     <h4>AIIMS Delhi <span class="badge badge-primary">Primary</span></h4>
                     <h5><span class="badge badge-success">Mon-Sat</span>  <span class="badge badge-danger">8am-2pm</span></h5>
-                    <p>Xyz Address</p>
-                    <p>address line 2</p>
+                    <p>Jay Apts, Shivaji Rd, Kandivali</p>
+                    <p><%= user.city %></p>
                 </div>
                 <hr style="border:1px solid #f1f1f1">
                 <div>
                     <h4>Personal Clinic <span class="badge badge-secondary">Secondary</span> </h4>
                     <h5><span class="badge badge-success">Mon-Sat</span>  <span class="badge badge-danger">4pm-9pm</span></h5>
-                    <p>Xyz Address</p>
-                    <p>address line 2</p>
+                    <p>D Silva Bldg, S.k.bole Raod, Opp. Agar Bazar Market</p>
+                    <p><%= user.city %></p>
                 </div>
             </div>
             
@@ -103,7 +103,7 @@
         <div class="right-section">
             <div>
                 <h3><%=user.name%> </h3>
-                <span> <img src="https://img.icons8.com/nolan/30/user-location.png"/>Los Angeles</span>
+                <span> <img src="https://img.icons8.com/nolan/30/user-location.png"/>India</span>
                 <div>
                     <span class="heading">Doctor rating</span>
                     <span class="fa fa-star checked"></span>
@@ -118,17 +118,22 @@
 
             <div>
                 <h4>Specialist of :</h4>
-                    <ul>
-                        <li>Lungs</li>
-                        <li>ENT</li>
-                        <li>Heart</li>
-                    </ul>
+                <ul>
+                  <% var a = user.Specialist %>
+                  <% console.log(a) %>
+                <% a.forEach(function(specialization){ %>
+                        <li><%= specialization.S %></li>
+                    <% }); %>
+                  </ul>
                 <h4>Qualifications</h4>
-                    <ul>
-                        <li>MD</li>
-                        <li>JLNMCH</li>
-                        <li>HDAPH</li>
-                    </ul>
+                <ul>
+                  <% var b = user.degrees %>
+                  <% console.log(b) %>
+                <% b.forEach(function(degree){ %>
+                        <li><%= degree.S %></li>
+                    <% }); %>
+                  </ul>
+
                     <hr style="border:3px solid #f1f1f1">
             </div>
 

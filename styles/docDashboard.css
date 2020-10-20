@@ -15,6 +15,7 @@ body {
 	display: flex;
 	padding: 10px;
 	display: block;
+	border-radius: 5px;
 }
 .patdashboard{
 	display: flex;
@@ -36,7 +37,4 @@ body {
 	background-color: #e3f2fd;
 	margin: 0 !important;
 	padding: 0;
-}
-#messenger{
-	right: 20% !important;
 }

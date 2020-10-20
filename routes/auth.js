@@ -253,4 +253,24 @@ router.get('/patient/:patusername/doctor/:docusername/profile',(req,res)=> {
 	}).catch(err => console.log(err));
 });
 
+
+
+router.get("/corona",(req,res)=>{
+var allcountry = [] ;
+fetch("https://covid19.mathdro.id/api/countries")
+.then(res=>res.json())
+.then(d => {
+    console.log(d);
+    allcountry = d; })
+.catch(e=>console.log(e));
+var details = [];
+// countries.forEach(c => {
+//  fetch(`https://covid19.mathdro.id/api/countries/${c.name}`)
+//  .then(res=>res.json())
+//  .then(data => {
+//     details.push(data);
+//  }).catch(err => console.log(err));
+// });
+	res.render("corona.ejs",{countries:allcountry});
+});
 module.exports = router;

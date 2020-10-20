@@ -36,11 +36,16 @@
               <input type="text" class="form-control" placeholder="Your Name" name="name" required>
             </div>
             <div class="col">
-                <label for="Name">Give a username</label>
+                <label for="Name">Username</label>
               <input type="text" class="form-control" placeholder="Username" name="username" required>
             </div>
           </div>
-   
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="profilePicture">Profile Image</label>
+              <input type="text" class="form-control" id="profilePicture" placeholder="ProfileImageURL(optional)" name="profileImage">
+            </div>
+            </div>
           <h5>Address Details: </h5>
           <div class="form-group">
             <label for="inputAddress">Address Line 1</label>
@@ -101,6 +106,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-success">Reseet Form</button>
       </form>
 
 </div>

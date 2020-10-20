@@ -86,6 +86,7 @@
           <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
         </svg>
         Search a doctor!</h1>
+        <hr style="padding: 2px;">
       <form  class ="patSearchForm" action="/auth/patient/<%=user.username%>/search" method="POST">
         <div class="form-row">
         <div class="form-group col-md-6">
@@ -106,26 +107,33 @@
       </form>
     </div>
 
-      <div class="mycontainer">
-       <div class="jumbotron" style="width: 600px; margin-left: 10px;height: 430px">
+      <div class="container mt-5 d-flex patdashboard">
+       
+          <div class="row">
+            <div class="container col-md-6">
+          <div class="jumbotron">
           <h1 class="display-7">My Appointments</h1>
           <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
           <hr class="my-4">
           <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-          <a class="btn btn-primary btn-lg" href="/auth/patient/Appointments" role="button">View All</a>
-        </div>  
-        <div class="jumbotron" style="width: 850px; margin-left: 10px;height: 430px">
+          <a class="btn btn-primary btn-lg" href="/auth/patient/<%=user.username%>/appointments" role="button">View All</a>
+          </div>  
+            </div>
+          <div class="container col-md-6">
+          <div class="jumbotron">
           <h1 class="display-7">Check out whats happening in the doctor's community!</h1>
           <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
           <hr class="my-4">
           <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
           <a class="btn btn-primary btn-lg" href="#" role="button">View More</a>
         </div> 
+        </div>
+        </div>
+      </div>
+     
 
-        
-
-      </div> 
-      <div class="jumbotron" style="width: 850px; margin-left: 43px;height: 430px">
+      <div class="container">
+      <div class="jumbotron">
           <h1 class="display-7">COVID 19 UPDATES</h1>
           <p class="lead">During the present novel coronavirus (COVID-19) pandemic, those on the front lines—including health care professionals, researchers, and government experts—need quick, easy access to real-time critical data.</p>
           <hr class="my-4">
@@ -133,9 +141,10 @@
           <br>
           <a class="btn btn-primary btn-lg" href="https://covid19.who.int/" target="_blank" role="button">View More</a>
       </div> 
-       
-        <footer class="footer">
-          <p style="margin: 0;padding: 5px">Made by Gorrila Gang<br></p>
+       </div>
+
+        <footer class="footer text-center">
+          <p style="margin: 0;padding: 5px">&#169; 2020, Made by Gorrila Gang<br></p>
         </footer>
     
     <!-- script for weavy components -->

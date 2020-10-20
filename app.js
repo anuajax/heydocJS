@@ -6,6 +6,10 @@ const port = 3000 || process.env.PORT;
 app.set("view engine","ejs");
 app.listen(3000, ()=>console.log(`Server active on port No: ${port}`));
 app.use(express.static(__dirname + "/styles"));
+// const session = require('express-session'); 
+// const flash = require('connect-flash');
+ 
+// app.use(flash());
 const authRoutes = require("./routes/auth");
 // const otherRoutes = require("./routes/commonRoutes");
 const indexRoutes = require('./routes/index');
@@ -18,5 +22,6 @@ app.use("/auth",authRoutes);
 //app.use("/user",otherRoutes);
 app.use("/",indexRoutes);
 app.get('/',(req,res)=>{
+    
     res.render("landing.ejs");
 })

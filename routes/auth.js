@@ -367,29 +367,6 @@ router.get('/patient/:patusername/doctor/:docusername/profile',(req,res)=> {
 });
 
 
-
-// router.get("/corona",(req,res)=>{
-// 	var allcountry;
-// 	var details=[];
-// 	fetch("https://covid19.mathdro.id/api/countries")
-// 	.then(res=>res.json())
-// 	.then(d => {
-// 		console.log(d);
-// 		allcountry = d.countries;
-// 		//allcountry.forEach(c=>console.log(c.name));
-// 		allcountry.forEach(country =>{
-// 		fetch(`https://covid19.mathdro.id/api/countries/${country.name}`)
-// 			.then(response => response.json())
-// 			.then(data => {
-// 				//console.log(data);
-// 				details.push(data);
-// 			})
-// 		})
-// 		console.log(details);
-// 		res.render("corona.ejs",{details:details,countriesList: allcountry});
-// 	}).catch(err=>console.log(err));
-// })
-
 router.get("/corona",(req,res)=> {
 	var confirmedCases;
 	fetch("https://covid19.mathdro.id/api/confirmed")

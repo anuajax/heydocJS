@@ -1,8 +1,8 @@
 # HeyDoc 
     This is a web app intended to provide easy one step solutions to any patient who signup, for finding a doctor based on their problems. He or She can search a doctor based on:
-   - location
-   - name
-   - speciality
+    - location
+    - name
+    - speciality
 and quickly book an appointment with just a single click.
 They can manage their files/prescriptions and view their current and past treatments.
 Similarly, doctors can approve appointments, manage their files with patients, view his/her past and active patients. Doctor's community for new discussion and users will be able to chat privately in a messenger.
@@ -16,6 +16,7 @@ Additionaly, a daily update of covid details is also provided, plus an emergency
     ```
        git clone https://github.com/anuajax/heydocJS.git
        npm install
+       nodemon app.js
     ```
     
     Run an instance of Weavy Server SDK (Weavy.sln) from Visual Studio and Microsoft SQL Server Management Studio
@@ -38,7 +39,7 @@ After Weavy is up and running, run a local instance at
     - View your current/history of doctors, treatments and appointments.
     - Chat with a doctor
     - Share common space with a doctor so that, if you have to meet him again, you both have the            prescriptions and necessary files.
-    - Take emergency ambulance and covid help and view Covid stats.
+    - View Covid stats
   - If you are a doctor, you can :
     - Approve an appointment.
     - Manage personal records and files of patients.
@@ -85,7 +86,8 @@ After Weavy is up and running, run a local instance at
    - The app can be made scalable with multiple users to enter at the same time and protected routes 
    - New features can be easily integrated with this app :
         - Zoom video call integration in messenger
-        - 
+        - Emergency ambulance booking system
+        - Video conferencing with doctors on Covid measures
 ### Authors and acknowledgment: 
 Thanks to our developers: 
    - @ritikamor

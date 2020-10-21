@@ -6,7 +6,7 @@
 and quickly book an appointment with just a single click.
 They can manage their files/prescriptions and view their current and past treatments.
 Similarly, doctors can approve appointments, manage their files with patients, view his/her past and active patients. Doctor's community for new discussion and users will be able to chat privately in a messenger.
-Additionaly, a daily update of covid details is also provided, plus an emergency ambulance booking and covid helpline facility. 
+Additionaly, a daily update of covid details is also provided. 
 ## Front-End and Routing
    ### Frameworks and Libraries:
 **NodeJS, ExpressJS, BootStrap4, Weavy ClientSDK, Weavy ServerSDK, jQuery, JWT**
@@ -48,6 +48,7 @@ After Weavy is up and running, run a local instance at
     - View your current/history of patients, treatments and appointments.
     - View/post/comment feed in doctor's community and check what's going on.
     - View Covid Stats 
+
 **All the links for above mentioned features will be displayed on the dashboard page and the navigation bar.**
 
  #### Common space for a particular doctor and patient :

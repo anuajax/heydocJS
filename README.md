@@ -1,12 +1,12 @@
 # HeyDoc 
-    This is a web app intended to provide easy one step solutions to any patient who signup, for finding a doctor based on their problems. He or She can search a doctor based on:
+   This is a web app intended to provide easy one step solutions to any patient who signup, for finding a doctor based on their problems. He or She can search a doctor based on:
    - location
    - name
    - speciality
-    and quickly book an appointment with just a single click.
-    They can manage their files/prescriptions and view their current and past treatments.
-    Similarly, doctors can approve appointments, manage their files with patients, view his/her past and active patients. Doctor's community for new discussion and users will be able to chat privately in a messenger.
-    Additionaly, a daily update of covid details is also provided, plus an emergency ambulance booking and covid helpline facility. 
+and quickly book an appointment with just a single click.
+They can manage their files/prescriptions and view their current and past treatments.
+Similarly, doctors can approve appointments, manage their files with patients, view his/her past and active patients. Doctor's community for new discussion and users will be able to chat privately in a messenger.
+Additionaly, a daily update of covid details is also provided, plus an emergency ambulance booking and covid helpline facility. 
 ## Front-End and Routing
    ### Frameworks and Libraries:
 **NodeJS, ExpressJS, BootStrap4, Weavy ClientSDK, Weavy ServerSDK, jQuery, JWT**

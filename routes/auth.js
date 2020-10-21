@@ -114,6 +114,11 @@ router.post("/login/doctor",(req,res)=>{
 			   res.redirect(`/auth/doctor/${user.username}/dashboard`);
 			})
 		.catch(err=>console.log(err));
+		}
+		else
+		{
+			console.log("wrong password");
+			res.redirect("/");
 		}	
 	})();
   
@@ -153,6 +158,12 @@ router.post("/login/patient",(req,res)=>{
 		}).catch(err => console.log(err));
 			  //res.header('authtoken',token);
 		}
+		else
+		{
+			console.log("wrong password");
+			res.redirect("/");
+		}	
+
 	})();
     
 	  		
@@ -192,33 +203,36 @@ router.post("/patient/:username/search",(req,res)=>{
   	})();
   	
 });
+router.get("/doctor/:username/doctorsCommunity",(req,res)=>{
+	res.render("doctorsCommunity.ejs",{user: doctor});
+});
 
-router.get("/doctor/:username/dashboard",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/dashboard",(req,res)=>{
 	res.render("docDashboard.ejs",{user: doctor});
 });
-router.get("/doctor/:username/appointments",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/appointments",(req,res)=>{
 	res.render("docAppointments.ejs",{user:doctor})
 });
-router.get("/doctor/:username/patients",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/patients",(req,res)=>{
 	res.render("docPatients.ejs",{user:doctor})
 });
-router.get("/doctor/:username/files",isLoggedIn,(req,res)=>{
+router.get("/doctor/:username/files",(req,res)=>{
 	res.render("docFiles.ejs",{user:doctor})
 });
-router.get("/patient/:username/dashboard",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/dashboard",(req,res)=>{
 	res.render("patDashboard.ejs",{user:patient})
 });
-router.get("/patient/:username/appointments",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/appointments",(req,res)=>{
 	res.render("patAppointments.ejs",{user:patient})
 });
-router.get("/patient/:username/doctors",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/doctors",(req,res)=>{
 	res.render("patDoctors.ejs",{user:patient})
 });
-router.get("/patient/:username/files",isLoggedIn,(req,res)=>{
+router.get("/patient/:username/files",(req,res)=>{
 	res.render("patFiles.ejs",{user:patient})
 });
 // ------------------appointment routes------------
-router.get("/book/appointment/:patUsername/:docUsername",isLoggedIn,(req,res)=> {
+router.get("/book/appointment/:patUsername/:docUsername",(req,res)=> {
 	console.log(req.params.patUsername);
 	console.log(req.params.docUsername);
 
@@ -254,7 +268,7 @@ router.get("/book/appointment/:patUsername/:docUsername",isLoggedIn,(req,res)=> 
 });
 
 
-router.get("/approve/appointment/:docUsername/:patUsername",isLoggedIn,(req,res)=> {
+router.get("/approve/appointment/:docUsername/:patUsername",(req,res)=> {
 	
 
 	(async ()=>{
@@ -284,7 +298,7 @@ router.get("/approve/appointment/:docUsername/:patUsername",isLoggedIn,(req,res)
 });
 
 
-router.get("/complete/appointment/:docUsername/:patUsername",isLoggedIn,(req,res)=> {
+router.get("/complete/appointment/:docUsername/:patUsername",(req,res)=> {
 	console.log(req.params.patUsername);
 	console.log(req.params.docUsername);
 
@@ -304,11 +318,11 @@ router.get("/complete/appointment/:docUsername/:patUsername",isLoggedIn,(req,res
 	  	});
 	  	content = await response.json();
 	  	console.log(content); //success:true if valid else false
-	  	patient = content.pat;
+	  	doctor = content.doc;
 
 		if(content.result === 'success')
 	  	{
-	  		res.render("patAppointments.ejs" , {user: patient});
+	  		res.render("patAppointments.ejs" , {user: doctor});
 		}
 		else
 		{
@@ -322,22 +336,20 @@ router.get("/complete/appointment/:docUsername/:patUsername",isLoggedIn,(req,res
 
 
 //-----------------Profile Pages----------------------
-router.get('/doctor/:username/profile',isLoggedIn,(req,res)=> {
+router.get('/doctor/:username/profile',(req,res)=> {
 	res.render("docProfile.ejs",{user:doctor});
 });
-router.get('/patient/:username/profile',isLoggedIn,(req,res)=> {
+router.get('/patient/:username/profile',(req,res)=> {
 	res.render("patProfile.ejs",{user:patient});
 });
 
 // ---------------SignOut Pages --------------------
-router.get('/doctor/:username/logout',isLoggedIn,(req,res)=>{
+router.get('/doctor/:username/logout',(req,res)=>{
 	isUserLoggedIn = false;
-	//res.render("landing.ejs");
 	res.redirect("/");
 });
-router.get('/patient/:username/logout',isLoggedIn,(req,res)=>{
+router.get('/patient/:username/logout',(req,res)=>{
 	isUserLoggedIn = false;
-	//res.render("landing.ejs");
 	res.redirect("/");
 });
 

@@ -105,7 +105,7 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">Doctor Name: <%= req.doc %> </li>
                     <li class="list-group-item">Patient Name: <%= req.pat %> </li>
-                    <li class="list-group-item">Date: 22/10/20 %> </li>
+                    <li class="list-group-item">Date: <%= date %> %> %> </li>
                     <li class="list-group-item">Time: 3 P.M </li>
                     <a class="btn btn-success btn-lg" href="/auth/approve/appointment/<%= user.username %>/<%= req.pat %>" style="width: 210px; font-size: 17px;margin-top: 10px">Approve Appointment</a>
                   </ul>
@@ -121,7 +121,7 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">Doctor Name: <%= req.doc %> </li>
                     <li class="list-group-item">Patient Name: <%= req.pat %> </li>
-                    <li class="list-group-item">Date: 22/10/20 %> </li>
+                    <li class="list-group-item">Date: <%= date %> %> %> </li>
                     <li class="list-group-item">Time: 3 P.M </li>
                     <a class="btn btn-success btn-lg" href="/auth/complete/appointment/<%= user.username %>/<%= req.pat %>" style="width: 210px; font-size: 17px;margin-top: 10px">Mark as completed</a>
 
@@ -138,7 +138,7 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">Doctor Name: <%= req.doc %> </li>
                     <li class="list-group-item">Patient Name: <%= req.pat %> </li>
-                    <li class="list-group-item">Date: 22/10/20 %> </li>
+                    <li class="list-group-item">Date: <%= date %> %> </li>
                     <li class="list-group-item">Time: 3 P.M </li>
                   </ul>
                 </div>

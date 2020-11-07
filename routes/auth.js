@@ -118,6 +118,7 @@ router.post("/login/doctor",(req,res)=>{
 		else
 		{
 			console.log("wrong password");
+			req.flash("error","Wrong password!");
 			res.redirect("/");
 		}	
 	})();
@@ -161,6 +162,7 @@ router.post("/login/patient",(req,res)=>{
 		else
 		{
 			console.log("wrong password");
+			req.flash("error","Wrong password");
 			res.redirect("/");
 		}	
 
@@ -168,7 +170,11 @@ router.post("/login/patient",(req,res)=>{
     
 	  		
 });
-
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var m = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var date = new Date();
+	date.setDate(date.getDate()+3);
+	date= `${days[date.getDay()]}, ${m[date.getMonth()]}, ${date.getDate()}, ${date.getFullYear()}`;
 // --------------------------------- Function to check if user has logged in ------------------
 
 function isLoggedIn(req,res,next){
@@ -198,44 +204,44 @@ router.post("/patient/:username/search",(req,res)=>{
 	  	console.log(result.values); // array of  info of all the doctors that match the search query
 	  	var resArray = [];
 	  	resArray = result.values;
-	  	res.render("patSearch",{result:resArray , user:patient});
+	  	res.render("patSearch",{result:resArray , user:patient, date:date});
 	  	
   	})();
   	
 });
 router.get("/doctor/:username/doctorsCommunity",(req,res)=>{
-	res.render("doctorsCommunity.ejs",{user: doctor});
+	res.render("doctorsCommunity.ejs",{user: doctor,date:date});
 });
 
 router.get("/doctor/:username/dashboard",(req,res)=>{
-	res.render("docDashboard.ejs",{user: doctor});
+	res.render("docDashboard.ejs",{user: doctor, date:date});
 });
 router.get("/doctor/:username/appointments",(req,res)=>{
-	res.render("docAppointments.ejs",{user:doctor})
+	res.render("docAppointments.ejs",{user:doctor, date:date})
 });
 router.get("/doctor/:username/patients",(req,res)=>{
-	res.render("docPatients.ejs",{user:doctor})
+	res.render("docPatients.ejs",{user:doctor, date:date})
 });
 router.get("/doctor/:username/files",(req,res)=>{
-	res.render("docFiles.ejs",{user:doctor})
+	res.render("docFiles.ejs",{user:doctor, date:date})
 });
 router.get("/patient/:username/dashboard",(req,res)=>{
-	res.render("patDashboard.ejs",{user:patient})
+	res.render("patDashboard.ejs",{user:patient, date:date})
 });
 router.get("/patient/:username/appointments",(req,res)=>{
-	res.render("patAppointments.ejs",{user:patient})
+	res.render("patAppointments.ejs",{user:patient, date:date})
 });
 router.get("/patient/:username/doctors",(req,res)=>{
-	res.render("patDoctors.ejs",{user:patient})
+	res.render("patDoctors.ejs",{user:patient, date:date})
 });
 router.get("/patient/:username/files",(req,res)=>{
-	res.render("patFiles.ejs",{user:patient})
+	res.render("patFiles.ejs",{user:patient, date:date})
 });
 // ------------------appointment routes------------
 router.get("/book/appointment/:patUsername/:docUsername",(req,res)=> {
 	console.log(req.params.patUsername);
 	console.log(req.params.docUsername);
-
+	
 	var appointmentData ={};
 	appointmentData["doc"] = req.params.docUsername;
 	appointmentData["pat"] = req.params.patUsername;
@@ -256,12 +262,14 @@ router.get("/book/appointment/:patUsername/:docUsername",(req,res)=> {
 
 		if(content.result === 'success')
 	  	{
-	  		res.render("patAppointments.ejs" , {user: patient});
+	  		res.render("patAppointments.ejs" , {user: patient,date:date});
 		}
 		else
 		{
 			console.log(content.result);
-			res.send(content.result);
+			//res.send(content.result);
+			req.flash("error","Appointment already booked! Sorry we have to log you out due to security reasons. Please login again!")
+			res.redirect("/");
 			//error in booking appointment
 		}
 	})();
@@ -270,7 +278,6 @@ router.get("/book/appointment/:patUsername/:docUsername",(req,res)=> {
 
 router.get("/approve/appointment/:docUsername/:patUsername",(req,res)=> {
 	
-
 	(async ()=>{
 		const response = await fetch('https://j4z72d2uie.execute-api.us-east-1.amazonaws.com/public/app?doc='+req.params.docUsername+'&pat='+req.params.patUsername, {
 		headers: {
@@ -286,12 +293,14 @@ router.get("/approve/appointment/:docUsername/:patUsername",(req,res)=> {
 
 		if(content.result === 'success')
 	  	{
-	  		res.render("docAppointments.ejs" , {user: doctor});
+	  		res.render("docAppointments.ejs" , {user: doctor,date:date});
 		}
 		else
 		{
 			console.log(content.result);
-			res.send(content.result);
+			//res.send(content.result);
+			req.flash("error","OOPS! error booking appointment, Due to security issues, please login again!");
+			res.redirect("/");
 			//error in booking appointment
 		}
 	})();
@@ -301,7 +310,7 @@ router.get("/approve/appointment/:docUsername/:patUsername",(req,res)=> {
 router.get("/complete/appointment/:docUsername/:patUsername",(req,res)=> {
 	console.log(req.params.patUsername);
 	console.log(req.params.docUsername);
-
+	
 	var appointmentData ={};
 	appointmentData["doc"] = req.params.docUsername;
 	appointmentData["pat"] = req.params.patUsername;
@@ -322,12 +331,14 @@ router.get("/complete/appointment/:docUsername/:patUsername",(req,res)=> {
 
 		if(content.result === 'success')
 	  	{
-	  		res.render("patAppointments.ejs" , {user: doctor});
+	  		res.render("docAppointments.ejs" , {user: doctor,date: date});
 		}
 		else
 		{
 			console.log(content.result);
-			res.send(content.result);
+			//res.send(content.result);
+			req.flash("error","OOPS! error fetching appointment, Due to security issues, please login again!");
+			res.redirect("/");
 			//error in booking appointment
 		}
 	})();
@@ -337,10 +348,10 @@ router.get("/complete/appointment/:docUsername/:patUsername",(req,res)=> {
 
 //-----------------Profile Pages----------------------
 router.get('/doctor/:username/profile',(req,res)=> {
-	res.render("docProfile.ejs",{user:doctor});
+	res.render("docProfile.ejs",{user:doctor, date:date});
 });
 router.get('/patient/:username/profile',(req,res)=> {
-	res.render("patProfile.ejs",{user:patient});
+	res.render("patProfile.ejs",{user:patient, date:date});
 });
 
 // ---------------SignOut Pages --------------------

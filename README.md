@@ -50,18 +50,6 @@ After Weavy is up and running, run a local instance at
     - View Covid Stats 
 
 **All the links for above mentioned features will be displayed on the dashboard page and the navigation bar.**
-
- #### Common space for a particular doctor and patient :
-   **A Weavy space with files app is created at the intersection of doctor and patient**
-    Assigning a unique key to Weavy space, the key being composed of doctor's and patient's unique username.
- #### Messaging and Notifications:
-    Unique id/key for weavy app from unique space, key being user's username
- #### Files management: 
-    Similarly inside unique Weavy space you have your own files.
- #### Community feed:
-    Only for doctor from weavy client SDK posts app for every doctor in his/her personal space.
- #### Covid Stats and other details like emergency ambulance
-    Info provided on Dashboard page from 3rd party API's.
 ### How it Works? 
   - A user visits a route(created using Express.js) , user data and other desired data is fetched from AWS Lambda database and passed to show files.
   - In show templates(ejs being used here) weavy instance is generated with the recieved token and spaces and apps using username and desired data is displayed. 
